@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "532615131798",
+    "project_id": "cmessages-e8e83",
+    "storage_bucket": "cmessages-e8e83.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:532615131798:android:e5237c89b168de00dbc8b7",
+        "android_client_info": {
+          "package_name": "com.example.cmessages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "532615131798-p81haq74vlie610kc2h1acfv1jvomgtu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDxRXrbbN50VkIXyZjUE7V9_hiI_dC5J2E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "532615131798-p81haq74vlie610kc2h1acfv1jvomgtu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

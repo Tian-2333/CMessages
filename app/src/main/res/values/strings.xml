@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">CMessages</string>
+    <string name="nice_to_see_you_again">Nice to see you again</string>
+    <string name="you_are_back">You are back!</string>
+    <string name="please_login_in">Please Login in</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="login">Login</string>
+    <string name="sign_up">sign up</string>
+    <string name="cmessages">CMessages</string>
+    <string name="c_messages">C Messages</string>
+    <string name="please_login">Please login</string>
+    <string name="add_photo">Add photo</string>
+    <string name="create_account">Create account</string>
+    <string name="name">Name</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="signup">SignUp</string>
+    <string name="signin">SignIn</string>
+    <string name="select_user">Select User</string>
+    <string name="contacts">Contacts</string>
+    <string name="please_enter_a_message">Please enter a message</string>
+    <string name="enter_a_message">Enter a message</string>
+    <string name="online">Online</string>
+</resources>
