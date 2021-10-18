@@ -19,7 +19,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="@dimen/_8sdp"
-        />
+        android:layout_marginLeft="@dimen/_16sdp" />
 
     <androidx.appcompat.widget.AppCompatImageView
         android:id="@+id/imageSignOut"
@@ -94,7 +94,8 @@
         android:backgroundTint="@color/primary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:tint="@color/white" />
+        android:tint="@color/white"
+        android:layout_marginRight="@dimen/_24sdp" />
 
 
 

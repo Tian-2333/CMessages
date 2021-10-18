@@ -1,5 +1,7 @@
 package com.example.cmessages.activities;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Build;
@@ -80,10 +82,12 @@ public class ChatActivity extends BaseActivity {
         );
         binding.chatRecyclerView.setAdapter(chatAdapter);
         database = FirebaseFirestore.getInstance();
-
     }
 
     private void sendMessage(){
+        if (binding.inputMessage.getText().toString().length() == 0) {
+            return;
+        }
         HashMap<String, Object> message = new HashMap<>();
         message.put(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID));
         message.put(Constants.KEY_RECEIVED_ID, receiverUser.id);
@@ -264,6 +268,42 @@ public class ChatActivity extends BaseActivity {
     private void setListeners(){
         binding.imageBack.setOnClickListener(v-> onBackPressed());
         binding.layoutSend.setOnClickListener(v-> sendMessage());
+        binding.imageInfo.setOnClickListener(v-> confirmDeleteChat());
+    }
+
+    private void confirmDeleteChat() {
+        new AlertDialog.Builder(ChatActivity.this)
+                .setTitle("Delete Chat History")
+                .setMessage("Are you sure you want to delete this chat history?")
+                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // Continue with delete operation
+                        database.collection(Constants.KEY_COLLECTION_CHAT)
+                                .whereEqualTo(Constants.KEY_RECEIVED_ID, receiverUser.id)
+                                .whereEqualTo(Constants.KEY_SENDER_ID, preferenceManager.getString(Constants.KEY_USER_ID))
+                                .get()
+                                .addOnCompleteListener(task -> {
+                                    if (task.isSuccessful() && task.getResult() != null &&
+                                            task.getResult().getDocuments().size() > 0) {
+                                        for (DocumentSnapshot message : task.getResult().getDocuments()) {
+                                            message.getReference().delete();
+                                        }
+                                    }
+                                });
+                        database
+                                .collection(Constants.KEY_COLLECTION_CONVERSATIONS)
+                                .document(conversionId).delete();
+                        database
+                                .collection(Constants.KEY_COLLECTION_CHAT)
+                                .document(conversionId).delete();
+                        chatMessages.clear();
+                        finish();
+                    }
+                })
+                // A null listener allows the button to dismiss the dialog and take no further action.
+                .setNegativeButton(android.R.string.no, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private String getReadableDateTime(Date date){

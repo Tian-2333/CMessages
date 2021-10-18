@@ -48,7 +48,7 @@ public class SignUpActivity extends AppCompatActivity {
     private void setListeners(){
         binding.textSignIn.setOnClickListener(v -> onBackPressed());
         binding.buttonSignUp.setOnClickListener(v->{
-            if (isValidSignUpDetails()){
+            if (isValidSignUpDetails()) {
                 signUp();
             }
         });
@@ -84,12 +84,10 @@ public class SignUpActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(intent);
-
                 })
                 .addOnFailureListener(exception -> {
                     loading(false);
                     showToast(exception.getMessage());
-
                 });
 
     }
@@ -102,8 +100,6 @@ public class SignUpActivity extends AppCompatActivity {
         previewBitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
         byte[] bytes = byteArrayOutputStream.toByteArray();
         return Base64.encodeToString(bytes, Base64.DEFAULT);
-
-
     }
 
     private final ActivityResultLauncher<Intent> pickImage = registerForActivityResult(

@@ -124,6 +124,15 @@ public class MainActivity extends BaseActivity implements ConversionListener {
                             break;
                         }
                     }
+                } else if (documentChange.getType() == DocumentChange.Type.REMOVED) {
+                    for (int i = 0; i < conversations.size(); i++){
+                        String senderId = documentChange.getDocument().getString(Constants.KEY_SENDER_ID);
+                        String receiverId = documentChange.getDocument().getString(Constants.KEY_RECEIVED_ID);
+                        if (conversations.get(i).senderId.equals(senderId) && conversations.get(i).receivedId.equals(receiverId)){
+                            conversations.remove(i);
+                            break;
+                        }
+                    }
                 }
             }
             conversations.sort((obj1, obj2) -> obj2.dateObject.compareTo(obj1.dateObject));
